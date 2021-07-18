@@ -5,13 +5,14 @@ from secrets import choice
 import string
 import os
 from flask import send_from_directory
+from waitress import serve
 
 
 app = Flask('pdftoweb')
 app.config['BASIC_AUTH_USERNAME'] = user
 app.config['BASIC_AUTH_PASSWORD'] = password
 basic_auth = BasicAuth(app)
-
+app.config['MAX_CONTENT_LENGTH'] = 500 * 1024 * 1024    # 500 Mb limit
 
 def pdf_to_html(filename):
     os.system(
@@ -53,4 +54,5 @@ def get_pdf(filename):
 
 
 if __name__ == '__main__':
-    app.run(port=port, host=host, debug=debug)
+    os.system('mkdir pdfs; mkdir htmls')
+    serve(app, port=port, host=host)

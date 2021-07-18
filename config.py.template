@@ -1,5 +1,5 @@
 port=24588 
-host='0.0.0.0'
+host='localhost'
 debug=True
 user='create a user'
 password='create a password'
