@@ -12,7 +12,6 @@ app = Flask('pdftoweb')
 app.config['BASIC_AUTH_USERNAME'] = user
 app.config['BASIC_AUTH_PASSWORD'] = password
 basic_auth = BasicAuth(app)
-app.config['MAX_CONTENT_LENGTH'] = 500 * 1024 * 1024    # 500 Mb limit
 
 def pdf_to_html(filename):
     os.system(
